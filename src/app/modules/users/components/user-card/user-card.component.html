@@ -1,0 +1,43 @@
+<article class="user-card">
+  <div class="user-card__image-container">
+    <img
+      [src]="user.imageUrl || defaultImage"
+      (error)="handleImageError($event)"
+      alt="{{ user.name }} profile photo"
+      class="user-card__image"
+      loading="lazy"
+    />
+  </div>
+
+  <div class="user-card__content">
+    <h3 class="user-card__name">{{ user.name }}</h3>
+    <a href="mailto:{{ user.email }}" class="user-card__email">{{
+      user.email
+    }}</a>
+
+    @if (user.bio) {
+    <p class="user-card__bio">{{ user.bio }}</p>
+    } @else {
+    <p class="user-card__bio user-card__bio--empty">No bio provided</p>
+    }
+  </div>
+
+  <div class="user-card__actions">
+    <button
+      type="button"
+      class="user-card__button user-card__button--edit"
+      (click)="handleEdit()"
+      aria-label="Edit user"
+    >
+      Edit
+    </button>
+    <button
+      type="button"
+      class="user-card__button user-card__button--delete"
+      (click)="handleDelete()"
+      aria-label="Delete user"
+    >
+      Delete
+    </button>
+  </div>
+</article>

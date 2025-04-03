@@ -1,0 +1,42 @@
+<section class="user-list">
+  <header class="user-list__header">
+    <h2 class="user-list__title">User Management</h2>
+    <a routerLink="/users/new" class="user-list__add-button">
+      <span class="user-list__button-icon">+</span>
+      Add New User
+    </a>
+  </header>
+
+  @if (isLoading) {
+  <div class="user-list__loading">
+    <span class="user-list__spinner"></span>
+    Loading users...
+  </div>
+  } @else if (error) {
+  <div class="user-list__error">
+    {{ error }}
+    <button class="user-list__retry-button" (click)="loadUsers()">
+      Try Again
+    </button>
+  </div>
+  } @else { @if (users.length === 0) {
+  <div class="user-list__empty">
+    No users found.
+    <a routerLink="/users/new" class="user-list__empty-link"
+      >Create your first user</a
+    >
+  </div>
+  } @else {
+  <div class="user-list__grid">
+    @for (user of users; track user.id) {
+    <app-user-card
+      [user]="user"
+      (edit)="onEditUser($event)"
+      (delete)="onDeleteUser($event)"
+      class="user-list__card"
+    >
+    </app-user-card>
+    }
+  </div>
+  } }
+</section>

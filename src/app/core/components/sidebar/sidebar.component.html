@@ -1,0 +1,16 @@
+<nav class="sidebar" [class.sidebar--open]="isOpen">
+  <ul class="sidebar__list">
+    @for (item of menuItems; track item.path) {
+    <li class="sidebar__item">
+      <a
+        class="sidebar__link"
+        [routerLink]="item.path"
+        routerLinkActive="sidebar__link--active"
+      >
+        <span class="sidebar__icon">{{ item.icon }}</span>
+        <span class="sidebar__label">{{ item.label }}</span>
+      </a>
+    </li>
+    }
+  </ul>
+</nav>

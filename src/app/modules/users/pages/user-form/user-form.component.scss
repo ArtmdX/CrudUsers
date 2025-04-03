@@ -1,0 +1,163 @@
+.user-form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+  &__title {
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+  }
+
+  &__error {
+    padding: 0.75rem;
+    background-color: #fadbd8;
+    color: #e74c3c;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  &__field {
+    margin-bottom: 1.5rem;
+  }
+
+  &__label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #2c3e50;
+
+    &::after {
+      content: "*";
+      color: #e74c3c;
+      margin-left: 0.25rem;
+      opacity: 0.8;
+      display: none;
+    }
+
+    &[for="name"]::after,
+    &[for="email"]::after {
+      display: inline;
+    }
+  }
+
+  &__input,
+  &__textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+
+    &:focus {
+      outline: none;
+      border-color: #3498db;
+      box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+    }
+
+    &--invalid {
+      border-color: #e74c3c;
+    }
+  }
+
+  &__textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+
+  &__validation {
+    margin-top: 0.5rem;
+    color: #e74c3c;
+    font-size: 0.8rem;
+
+    span {
+      display: block;
+    }
+  }
+
+  &__image-preview {
+    display: block;
+    max-width: 150px;
+    max-height: 150px;
+    margin-top: 1rem;
+    border-radius: 4px;
+    border: 1px solid #eee;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  &__button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &--cancel {
+      background-color: #ecf0f1;
+      color: #7f8c8d;
+
+      &:hover {
+        background-color: #bdc3c7;
+      }
+    }
+
+    &--submit {
+      background-color: #2ecc71;
+      color: white;
+
+      &:hover:not(:disabled) {
+        background-color: #27ae60;
+      }
+
+      &:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  &__spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s ease-in-out infinite;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .user-form {
+    padding: 1.5rem;
+
+    &__actions {
+      flex-direction: column;
+    }
+
+    &__button {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,104 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="user-form">
+  <h2 class="user-form__title">
+    {{ isEditMode ? "Edit User" : "Create New User" }}
+  </h2>
+
+  @if (error) {
+  <div class="user-form__error">
+    {{ error }}
+  </div>
+  }
+
+  <div class="user-form__field">
+    <label for="name" class="user-form__label">Name</label>
+    <input
+      type="text"
+      id="name"
+      formControlName="name"
+      class="user-form__input"
+      [class.user-form__input--invalid]="
+        name?.invalid && (name?.touched || name?.dirty)
+      "
+    />
+    @if (name?.invalid && (name?.touched || name?.dirty)) {
+    <div class="user-form__validation">
+      @if (name?.errors?.['required']) {
+      <span>Name is required</span>
+      } @if (name?.errors?.['minlength']) {
+      <span>Minimum 3 characters</span>
+      }
+    </div>
+    }
+  </div>
+
+  <div class="user-form__field">
+    <label for="email" class="user-form__label">Email</label>
+    <input
+      type="email"
+      id="email"
+      formControlName="email"
+      class="user-form__input"
+      [class.user-form__input--invalid]="
+        email?.invalid && (email?.touched || email?.dirty)
+      "
+    />
+    @if (email?.invalid && (email?.touched || email?.dirty)) {
+    <div class="user-form__validation">
+      @if (email?.errors?.['required']) {
+      <span>Email is required</span>
+      } @if (email?.errors?.['email']) {
+      <span>Please enter a valid email</span>
+      }
+    </div>
+    }
+  </div>
+
+  <div class="user-form__field">
+    <label for="bio" class="user-form__label">Bio</label>
+    <textarea
+      id="bio"
+      formControlName="bio"
+      class="user-form__textarea"
+      rows="4"
+    ></textarea>
+  </div>
+
+  <div class="user-form__field">
+    <label for="imageUrl" class="user-form__label">Profile Image URL</label>
+    <input
+      type="url"
+      id="imageUrl"
+      formControlName="imageUrl"
+      class="user-form__input"
+      placeholder="https://example.com/photo.jpg"
+    />
+    @if (userForm.value.imageUrl) {
+    <img
+      [src]="userForm.value.imageUrl"
+      alt="Profile preview"
+      class="user-form__image-preview"
+      onerror="this.src='assets/images/default-avatar.png'"
+    />
+    }
+  </div>
+
+  <div class="user-form__actions">
+    <button
+      type="button"
+      class="user-form__button user-form__button--cancel"
+      (click)="onCancel()"
+    >
+      Cancel
+    </button>
+    <button
+      type="submit"
+      class="user-form__button user-form__button--submit"
+      [disabled]="isLoading || userForm.invalid"
+    >
+      @if (isLoading) {
+      <span class="user-form__spinner"></span>
+      }
+      {{ isEditMode ? "Update" : "Create" }}
+    </button>
+  </div>
+</form>
