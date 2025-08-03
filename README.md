@@ -24,7 +24,7 @@ Este projeto é um teste técnico desenvolvido com Angular. Trata-se de um dashb
 ## ▶️ Como Rodar Localmente
 
 ```bash
-git clone https://github.com/seu-usuario/peladeiros.git
-cd peladeiros
+git clone https://github.com/seu-usuario/crudusers.git
+cd crudusers
 npm install
 npm start
